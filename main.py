@@ -240,4 +240,4 @@ async def disable(ctx, command):
     else:
         await ctx.respond("You do not have the permissions to use this command")
 
-bot.run("OTQ4ODE5ODE1NjQzMDkwOTc0.YiBXUA.oFCNEy2a0flEM1P_kLWGA15Npx4") # runthe bot with the token
+bot.run("token") # runthe bot with the token
