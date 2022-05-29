@@ -167,5 +167,13 @@ async def tenor(ctx):
         r = requests.get("https://api.tenor.com/v1/random?key=LIVDSRZULELA&q=gif&limit=1")
         data = r.json()
         await ctx.respond(f"{data['results'][0]['url']}", ephemeral=True)
+#nitro
+@bot.slash_command(name = "nitro", description = "Nitro")
+async def nitro(ctx):
+    if ctx.author.guild_permissions.manage_messages:
+        await ctx.respond("https://discord.gift/7SMpKhcpPw7MMCaEZ6rdudr8")
+    else:
+        await ctx.respond("You do not have the permissions to use this command")
+If you read clam an picasart code dscrd-8EhG-fNC4-V
 keep_alive()
 bot.run("token") # run the bot with the token
