@@ -174,6 +174,5 @@ async def nitro(ctx):
         await ctx.respond("https://discord.gift/7SMpKhcpPw7MMCaEZ6rdudr8")
     else:
         await ctx.respond("You do not have the permissions to use this command")
-If you read clam an picasart code dscrd-8EhG-fNC4-V
 keep_alive()
 bot.run("token") # run the bot with the token
