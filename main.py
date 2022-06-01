@@ -1,5 +1,6 @@
 from webbrowser import get
 import aiohttp
+import pycord
 import discord
 import asyncio
 from discord.ext import commands
@@ -11,11 +12,12 @@ import datetime
 import os 
 
 
-bot = discord.Bot(debug_guilds=[931093864503201813], command_prefix="!")
+bot = discord.Bot(debug_guilds=[931093864503201813, 952860765352755261], command_prefix="!")
 discord.Intents.all()
 @bot.event
 async def on_ready():
     print(f"{bot.user} is ready and online!")
+    await bot.change_presence(activity=discord.Game('SBI'))
 owner_id = 405356071989936129
 
 @bot.slash_command(name = "hello", description = "Say hello to the bot")
@@ -81,7 +83,7 @@ async def purge(ctx, amount: int):
 #ping 
 @bot.slash_command(name = "ping", description = "Ping the bot")
 async def ping(ctx):
-    await ctx.respond(f"**Pong** :ping_pong:{round(bot.latency * 1000)}ms")
+    await ctx.respond(f"**Pong** :ping_pong:{round(bot.latency * 1000)}ms", ephemeral=True)
 #add role
 @bot.slash_command(name = "addrole", description = "Add a role to a user")
 async def addrole(ctx, member: discord.Member, role: discord.Role):
@@ -118,7 +120,7 @@ async def lbs(ctx, lbs: float):
 async def rickroll(ctx, member: discord.Member):
     if ctx.author.guild_permissions.manage_messages:
         await member.send("https://tenor.com/view/rickroll-roll-rick-never-gonna-give-you-up-never-gonna-gif-22954713")
-        await ctx.respond(f"{member} has been rickrolled")
+        await ctx.respond(f"{member} has been rickrolled", ephemeral=True)
     else:
         await ctx.respond("You do not have the permissions to use this command")
 #8ball
@@ -167,12 +169,17 @@ async def tenor(ctx):
         r = requests.get("https://api.tenor.com/v1/random?key=LIVDSRZULELA&q=gif&limit=1")
         data = r.json()
         await ctx.respond(f"{data['results'][0]['url']}", ephemeral=True)
-#nitro
-@bot.slash_command(name = "nitro", description = "Nitro")
-async def nitro(ctx):
+@bot.slash_command(name = "github", description = "Send a link to the bot's github")
+async def github(ctx):
+        await ctx.respond("Github link https://github.com/M4axim/taipixel", ephemeral=True)
+#rickroll command
+@bot.slash_command(name = "worshipsky", description = "Worship sky")
+async def worshipsky(ctx, member: discord.Member):
     if ctx.author.guild_permissions.manage_messages:
-        await ctx.respond("https://discord.gift/7SMpKhcpPw7MMCaEZ6rdudr8")
+        await member.send("https://cdn.discordapp.com/avatars/702473604616421476/a_35cef7f419d30f3434d2dbb4f7fad4a7.gif?size=512 Worship sky <:salute:980553271351603260>")
+        await ctx.respond(f"{member} has been worshipied <:salute:980553271351603260>", ephemeral=True)
     else:
         await ctx.respond("You do not have the permissions to use this command")
 keep_alive()
-bot.run("token") # run the bot with the token
+token = os.environ['token']
+bot.run(token)
