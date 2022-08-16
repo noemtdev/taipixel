@@ -156,7 +156,7 @@ async def rickrollchannel(ctx, channel_id):
     else:
         await ctx.respond("You do not have the permissions to use this command")
 #math command
-@bot.slash_command(name = "math", description = "Do math")
+@bot.command(name = "math", description = "Do math")
 async def math(ctx, *, equation):
         await ctx.respond(f"{eval(equation)}", ephemeral=True)
 #iphone gif
